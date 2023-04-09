@@ -20,15 +20,23 @@ class Rank(Enum):
     EIGHT = 8
     NINE = 9
     TEN = 10
-    JACK = 10
-    QUEEN = 10
-    KING = 10
+    JACK = 11
+    QUEEN = 12
+    KING = 13
 
 
 class Card:
+
     def __init__(self, suit: Suit, rank: Rank):
         self.suit = suit
         self.rank = rank
+        self.width = 80
+        self.height = 100
+
+        if any(rank == r for r in [Rank.ACE, Rank.JACK, Rank.QUEEN, Rank.KING]):
+            self.image = f"./resource/images/cards/{rank.name.lower()}_of_{suit.name.lower()}.png"
+        else:
+            self.image = f"./resource/images/cards/{rank.value}_of_{suit.name.lower()}.png"
 
     def __str__(self):
         return f"{self.rank.name} of {self.suit.name}"

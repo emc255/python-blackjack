@@ -22,6 +22,8 @@ class Person(ABC):
             if card.rank == Rank.ACE:
                 one, eleven = card.rank.value
                 hand_result += one if hand_result + eleven > 21 else eleven
+            elif any(card.rank == r for r in [Rank.JACK, Rank.QUEEN, Rank.KING]):
+                hand_result += 10
             else:
                 hand_result += card.rank.value
 

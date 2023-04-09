@@ -20,9 +20,9 @@ class Rank(Enum):
     EIGHT = 8
     NINE = 9
     TEN = 10
-    JACK = 11
-    QUEEN = 12
-    KING = 13
+    JACK = 10
+    QUEEN = 10
+    KING = 10
 
 
 class Card:
@@ -37,22 +37,21 @@ class Card:
 class Deck:
     def __init__(self, number_of_deck: int = 1):
         self.cards = [Card(suit, rank) for _ in range(number_of_deck) for suit in Suit for rank in Rank]
-        self.played_cards = []
 
-    def deal_card(self):
+    def add__cards(self, cards):
+        self.cards.extend(cards) if isinstance(cards, list) else self.cards.append(cards)
+
+    def remove_card(self):
         return self.cards.pop()
-
-    def add_played_cards(self, cards):
-        if type(cards) == list:
-            self.played_cards.extend(cards)
-        else:
-            self.played_cards.append(cards)
 
     def shuffle(self):
         random.shuffle(self.cards)
 
+    def check_cards_count(self, number: int):
+        return len(self.cards) >= number
+
     def get_cards_count(self):
         return len(self.cards)
 
-    def get_played_cards_count(self):
-        return len(self.played_cards)
+    # def get_played_cards_count(self):
+    #     return len(self.played_cards)

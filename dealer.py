@@ -10,7 +10,10 @@ class Dealer(Person):
         super().add_card(card)
 
     def reset_hand(self):
-        return super().reset_hand()
+        super().reset_hand()
 
     def calculate_hand_result(self):
-        super().calculate_hand_result()
+        return super().calculate_hand_result()
+
+    def reveal_one_card(self):
+        return f"{self.cards[0].rank.value}"

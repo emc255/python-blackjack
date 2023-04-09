@@ -26,7 +26,8 @@ class Person(ABC):
                 hand_result += card.rank.value
 
         return hand_result
-        # @abc.abstractmethod
+
+    # @abc.abstractmethod
     # def my_abstract_method(self):
     #     pass
     # @staticmethod

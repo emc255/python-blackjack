@@ -1,16 +1,25 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+from card_elements import Deck, Card, Suit, Rank
+from player import Player
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+def main():
+    deck = Deck(2)
+    print(deck.get_cards_count())
+    player = Player("jennie", 1200)
+    card1 = Card(Suit.DIAMONDS, Rank.ACE)
+    card2 = Card(Suit.DIAMONDS, Rank.FIVE)
+
+    player.add_card(card1)
+    player.add_card(card2)
+    player.add_card(card1)
+    print(player.calculate_hand_result())
+    player.add_card(card1)
+    player.add_card(card1)
+    player.add_card(card1)
+    player.add_card(card2)
+    player.add_card(card2)
+    print(player.calculate_hand_result())
+    print(player)
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+main()

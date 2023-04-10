@@ -63,12 +63,13 @@ class Deck:
         self.cards.extend(cards) if isinstance(cards, list) else self.cards.append(cards)
 
     def remove_card(self):
-        return self.cards.pop()
+        return self.cards.pop(0)
 
     def shuffle(self):
         random.shuffle(self.cards)
 
     def check_remaining_cards_count(self, players: int):
+        print(f"{len(self.cards) >= (players * 2)} im in checking")
         return len(self.cards) >= (players * 2)
 
     def get_cards_count(self):

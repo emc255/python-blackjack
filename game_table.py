@@ -141,3 +141,7 @@ class GameTable(GameLogic):
         self.dealer.reset_hand()
         self.player.reset_hand()
         self.player.reset_bet()
+
+    def card_shuffle(self):
+        self.deck.cards.extend(self.cards_played)
+        self.deck.shuffle()

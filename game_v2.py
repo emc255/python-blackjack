@@ -12,7 +12,6 @@ def main():
     screen_height = 600
     screen_background_color = (66, 123, 184)
     screen = pygame.display.set_mode((screen_width, screen_height))
-    screen.fill(screen_background_color)
 
     # initialize game
     player = Player("jessica", 1111)
@@ -28,7 +27,6 @@ def main():
     # number of players it includes dealer
     number_of_players = 2
 
-    pygame.display.flip()
     while True:
         # Check for Pygame events
         for event in pygame.event.get():
@@ -43,8 +41,10 @@ def main():
 
                     animation.deal_card(deck.cards, number_of_players)
                     game_table.deal_card(number_of_players)
+                    game_table.reset_hands()
                 else:
-                    quit()
+                    game_table.card_shuffle()
+                    animation.card_shuffle()
 
             keys = pygame.key.get_pressed()
 

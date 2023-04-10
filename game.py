@@ -48,7 +48,7 @@ class Game:
 
     def deal_card(self):
         players = 2
-        if self.deck.check_cards_count(players * 2):
+        if self.deck.check_remaining_cards_count(players * 2):
             for _ in range(players):
                 self.dealer.add_card(self.deck.remove_card())
                 self.player.add_card(self.deck.remove_card())

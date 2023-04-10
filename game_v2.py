@@ -1,17 +1,32 @@
 import pygame
 
-from game_logic import Game
+from animation import Animation
+from card_elements import Deck
+from game_table import GameTable
 from player import Player
 
 
 def main():
-    pygame.init()
-    window = pygame.display.set_mode((600, 600))
-    window.fill((66, 123, 184))
-    player = Player("jessica", 1111)
-    game = Game(window, player)
+    # initialize screen
+    screen_width = 800
+    screen_height = 600
+    screen_background_color = (66, 123, 184)
+    screen = pygame.display.set_mode((screen_width, screen_height))
+    screen.fill(screen_background_color)
 
-    game.start()
+    # initialize game
+    player = Player("jessica", 1111)
+    deck = Deck()
+    game_table = GameTable(player, deck)
+    animation = Animation(screen, screen_width, screen_height,
+                          screen_background_color, deck.back_image_path)
+
+    # start game
+    game_table.start()
+    animation.start()
+
+    # number of players it includes dealer
+    number_of_players = 2
 
     pygame.display.flip()
     while True:
@@ -21,6 +36,21 @@ def main():
                 # If the user clicks the close button, quit Pygame and exit the program
                 pygame.quit()
                 quit()
+            elif event.type == pygame.MOUSEBUTTONUP:
+                # Move object to the location where the user clicked
+                mouse_pos = pygame.mouse.get_pos()
+                if deck.check_remaining_cards_count(number_of_players):
+
+                    animation.deal_card(deck.cards, number_of_players)
+                    game_table.deal_card(number_of_players)
+                else:
+                    quit()
+
+            keys = pygame.key.get_pressed()
+
+            if keys[pygame.K_LEFT]:
+                animation.deal_card(deck.cards, number_of_players)
+                game_table.deal_card(number_of_players)
 
 
 if __name__ == '__main__':

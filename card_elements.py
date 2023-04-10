@@ -56,6 +56,8 @@ class Card:
 class Deck:
     def __init__(self, number_of_deck: int = 1):
         self.cards = [Card(suit, rank) for _ in range(number_of_deck) for suit in Suit for rank in Rank]
+        root_dir = os.path.dirname(os.path.abspath(__file__))
+        self.back_image_path = os.path.join(root_dir, 'resource', 'images', "cards", "back.png")
 
     def add__cards(self, cards):
         self.cards.extend(cards) if isinstance(cards, list) else self.cards.append(cards)
@@ -66,8 +68,8 @@ class Deck:
     def shuffle(self):
         random.shuffle(self.cards)
 
-    def check_cards_count(self, number: int):
-        return len(self.cards) >= number
+    def check_remaining_cards_count(self, players: int):
+        return len(self.cards) >= (players * 2)
 
     def get_cards_count(self):
         return len(self.cards)

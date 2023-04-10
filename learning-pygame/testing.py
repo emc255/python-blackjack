@@ -1,6 +1,4 @@
-from card_elements import Deck
+import pygame
 
-deck = Deck()
-
-for d in deck.cards:
-    print(d.image_path)
+screen = pygame.display.set_mode((1, 1))
+print(type(screen))

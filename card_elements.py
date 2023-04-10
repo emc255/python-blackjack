@@ -69,7 +69,6 @@ class Deck:
         random.shuffle(self.cards)
 
     def check_remaining_cards_count(self, players: int):
-        print(f"{len(self.cards) >= (players * 2)} im in checking")
         return len(self.cards) >= (players * 2)
 
     def get_cards_count(self):

@@ -18,7 +18,19 @@ class Animation(GameLogic):
         self.center_y = (screen_height - 100) // 2 - 5
 
     def start(self):
-        self.card_shuffle()
+        self.screen.fill(self.screen_background_color)
+        pass
+
+    def text_start(self):
+
+        font = pygame.font.SysFont('Arial', 24)
+        text_start = font.render('Game Start!!', True, (255, 255, 255))
+        text_start_rect = text_start.get_rect()
+        print(text_start_rect)
+        self.screen.blit(text_start, (self.center_x, self.center_y))
+        pygame.draw.rect(self.screen, (255, 0, 0), (self.center_x, self.center_y, 137, 27), 2)
+        pygame.display.flip()
+        return text_start_rect
 
     def deal_card(self, cards, number_of_players: int):
         is_player_receive_card = True

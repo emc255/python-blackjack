@@ -8,6 +8,7 @@ from player import Player
 
 def main():
     # initialize screen
+    pygame.init()
     screen_width = 800
     screen_height = 600
     screen_background_color = (66, 123, 184)
@@ -19,6 +20,10 @@ def main():
     game_table = GameTable(player, deck)
     animation = Animation(screen, screen_width, screen_height,
                           screen_background_color, deck.back_image_path)
+
+    # clickable area
+
+    text_start_rect = animation.text_start()
 
     # start game
     game_table.start()
@@ -37,14 +42,13 @@ def main():
             elif event.type == pygame.MOUSEBUTTONUP:
                 # Move object to the location where the user clicked
                 mouse_pos = pygame.mouse.get_pos()
-                if deck.check_remaining_cards_count(number_of_players):
+                print(mouse_pos)
+                if text_start_rect.collidepoint(mouse_pos):
 
-                    animation.deal_card(deck.cards, number_of_players)
-                    game_table.deal_card(number_of_players)
-                    game_table.reset_hands()
-                else:
-                    game_table.card_shuffle()
-                    animation.card_shuffle()
+                    if deck.check_remaining_cards_count(number_of_players):
+                        animation.card_shuffle()
+                        game_table.card_shuffle()
+                        animation.deal_card(deck.cards, number_of_players)
 
             keys = pygame.key.get_pressed()
 

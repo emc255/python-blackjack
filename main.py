@@ -1,7 +1,12 @@
 from game import Game
 from player import Player
 
-if __name__ == "__main__":
-    player = Player("jessica", 1200)
-    game = Game(player)
+
+def main():
+    player = Player("jessica", 1220)
+    game = Game(player, 1)
     game.start()
+
+
+if __name__ == '__main__':
+    main()
